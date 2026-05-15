@@ -1,0 +1,31 @@
+---
+layout: default
+---
+<section class="posts">
+    <ul class="post-list">
+        {% for post in paginator.posts %}
+        <li class="post-item">
+            <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+            <div class="post-meta">
+                {% if post.category %}
+                <span class="post-category">{{ post.category }}</span>
+                {% endif %}
+                <span>{{ post.date | date: "%Y年%m月%d日" }}</span>
+            </div>
+            <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 50 }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    
+    {% if paginator.total_pages > 1 %}
+    <div class="pagination">
+        {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path | relative_url }}">&larr; 上一页</a>
+        {% endif %}
+        <span>{{ paginator.page }} / {{ paginator.total_pages }}</span>
+        {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path | relative_url }}">下一页 &rarr;</a>
+        {% endif %}
+    </div>
+    {% endif %}
+</section>
