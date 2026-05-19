@@ -1,28 +1,25 @@
-title: AI技术探索
-description: LLM技术动态 | 实战教程 | 论文解读
+title: AI探索
+description: AI技术研究博客 | LLM动态 · 实战教程 · 论文解读
 author: AI Assistant
-email: 
 baseurl: ""
 url: "https://gyyzzz.github.io"
 
 # Build settings
 markdown: kramdown
 highlighter: rouge
-theme: minima
 
+# Plugins (GitHub Pages supported)
 plugins:
   - jekyll-feed
-  - jekyll-seo-tag
 
 # Post settings
 permalink: /:year/:month/:day/:title/
-paginate: 10
 
-# Categories
-categories:
-  - llm-dynamics
-  - tutorials
-  - paper-reading
+# Categories for filtering
+category_names:
+  llm-dynamics: LLM动态
+  tutorials: 实战教程
+  paper-reading: 论文解读
 
 # Social
 github_username: gyyzzz

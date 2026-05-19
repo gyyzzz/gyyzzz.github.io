@@ -3,6 +3,7 @@ title: "Hermes Agent：开源AI代理框架安装与使用指南"
 layout: post
 category: tutorials
 date: 2026-05-15
+tags: [Hermes, AI Agent, 安装指南]
 ---
 
 Hermes Agent是Nous Research开源的AI代理框架，可以在终端、消息平台和IDE中运行。与Claude Code、OpenAI Codex类似，Hermes通过工具调用与系统交互，支持20+种LLM提供商（OpenRouter、Anthropic、OpenAI、DeepSeek、本地模型等）。
