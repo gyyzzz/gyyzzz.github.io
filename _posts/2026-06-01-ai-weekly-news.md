@@ -1,5 +1,5 @@
 ---
-title: "AI周报：Anthropic估值近万亿、教皇发布AI通谕、软件安全联盟启动"
+title: "AI周报：Anthropic估值近万亿、启动IPO、软件安全联盟进展"
 layout: post
 category: llm-dynamics
 date: 2026-06-01
