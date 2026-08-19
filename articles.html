@@ -1,0 +1,66 @@
+---
+layout: default
+title: 文章
+permalink: /articles/
+---
+
+<section class="post-page">
+    <div class="container article-page-grid">
+        <div class="panel">
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow">Essays & Notes</div>
+                    <h2>文章与文档</h2>
+                </div>
+                <p>集中展示我写过的技术文章、实践记录与迁移内容</p>
+            </div>
+
+            <div class="post-list">
+                {% assign article_count = 0 %}
+                {% for post in site.posts %}
+                {% assign is_ai = false %}
+                {% if post.category == "llm-dynamics" or post.categories contains "llm-dynamics" %}
+                {% assign is_ai = true %}
+                {% endif %}
+                {% unless is_ai %}
+                <article class="post-row">
+                    <a href="{{ post.url | relative_url }}">
+                        <div class="meta">{{ post.date | date: "%Y-%m-%d" }}</div>
+                        <h3>{{ post.title }}</h3>
+                    </a>
+                    <p class="summary">{{ post.excerpt | strip_html | truncatewords: 36 }}</p>
+                </article>
+                {% assign article_count = article_count | plus: 1 %}
+                {% endunless %}
+                {% endfor %}
+            </div>
+
+            {% if article_count == 0 %}
+            <p class="muted-note">当前还没有迁移完成的文章内容，后续会继续补充。</p>
+            {% endif %}
+        </div>
+
+        <div class="panel">
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow">Migration</div>
+                    <h2>迁移状态</h2>
+                </div>
+            </div>
+            <p class="muted-note">已确认迁移：</p>
+            <div class="post-list">
+                {% for post in site.posts %}
+                {% if post.content contains "本文从CSDN迁移至此" %}
+                <article class="post-row">
+                    <a href="{{ post.url | relative_url }}">
+                        <div class="meta">已迁移</div>
+                        <h3>{{ post.title }}</h3>
+                    </a>
+                    <p class="summary">原始内容已落到 GitHub Pages，可继续补充同系列文章。</p>
+                </article>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

@@ -5,6 +5,8 @@ date: 2025-04-25
 categories: [paper-reading]
 tags: [MCP, AI, Agent, ClickHouse, Python]
 author: g66x
+source_name: CSDN
+source_url: https://blog.csdn.net/weixin_42697921/article/details/147505261
 ---
 
 > **本文从CSDN迁移至此**  
@@ -839,4 +841,3 @@ anythingllm中使用mcp,不好使
   
 
 ```
-

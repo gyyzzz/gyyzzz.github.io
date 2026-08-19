@@ -1,138 +1,172 @@
 ---
 layout: default
+title: 首页
 ---
 
 <section class="hero">
     <div class="container">
-        <div class="hero-logo">
-            <span>AI</span><span>探索</span>
-        </div>
-        <h1> 运维开发技术研究博客</h1>
-        <p>探索 AI 前沿 · 运维开发工程实践 · 分享技术心得</p>
-        
-        <div class="search-container">
-            <input type="text" class="search-input" placeholder="搜索文章标题和内容..." id="searchInput">
-            <span class="search-hint">⌘K</span>
-        </div>
-        
-        <div class="tags-container">
-            <span class="tag active" data-filter="all">全部</span>
-            <span class="tag" data-filter="llm-dynamics">LLM动态</span>
-            <span class="tag" data-filter="tutorials">实战教程</span>
-            <span class="tag" data-filter="paper-reading">论文解读</span>
-        </div>
-    </div>
-</section>
+        <div class="eyebrow">Personal Blog</div>
+        <h1>记录 AI 资讯，也记录我写过的东西</h1>
+        <p>这里保留 AI 技术周报的分页浏览，同时把迁移过来的文章、笔记和文档整理成更像个人博客的结构。</p>
 
-{% if site.posts.size > 0 %}
-<section class="featured-section">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-title">精选文章</span>
-            <span class="section-badge">FEATURED</span>
+        <div class="hero-actions">
+            <a class="button-link primary" href="{{ '/articles/' | relative_url }}">进入文章页</a>
+            <a class="button-link" href="{{ '/archive/' | relative_url }}">查看归档</a>
+            <a class="button-link" href="{{ '/about/' | relative_url }}">关于本站</a>
         </div>
-        
-        {% assign featured = site.posts | first %}
-        <div class="featured-card">
-            <span class="featured-badge">★ 精选</span>
-            <a href="{{ featured.url | relative_url }}">
-                <div class="featured-image">
-                    <span>{{ featured.category }}</span>
-                </div>
-                <div class="featured-content">
-                    <h3 class="featured-title">{{ featured.title }}</h3>
-                    <p class="featured-meta">{{ featured.date | date: "%Y-%m-%d" }} · AI探索</p>
-                    <p class="featured-excerpt">{{ featured.excerpt | strip_html | truncatewords: 50 }}</p>
-                    <span class="read-more">阅读全文 →</span>
-                </div>
-            </a>
-        </div>
-    </div>
-</section>
 
-<section class="latest-section">
-    <div class="container">
-        <div class="latest-header">
-            <div class="section-header">
-                <span class="section-title">最新文章</span>
-                <span class="article-count">{{ site.posts.size }} 篇</span>
+        <div class="hero-metrics">
+            <div class="metric">
+                <strong>{{ site.posts.size }}</strong>
+                <span class="muted-note">篇内容</span>
+            </div>
+            <div class="metric">
+                <strong>AI 资讯</strong>
+                <span class="muted-note">保留分页浏览</span>
+            </div>
+            <div class="metric">
+                <strong>文章页</strong>
+                <span class="muted-note">承接迁移内容</span>
             </div>
         </div>
-        
-        <div class="article-list" id="articleList">
-            {% for post in site.posts %}
-            <article class="article-card" data-category="{{ post.category }}">
-                <a href="{{ post.url | relative_url }}">
-                    <h3 class="article-title">{{ post.title }}</h3>
-                    <p class="article-meta">{{ post.date | date: "%Y.%m.%d" }} · {{ post.category }}</p>
-                    <p class="article-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
-                    {% if post.tags %}
-                    <div class="article-tags">
-                        {% for tag in post.tags %}
-                        <span class="article-tag">#{{ tag }}</span>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                    <span class="read-more">阅读全文 →</span>
-                </a>
-            </article>
-            {% endfor %}
+    </div>
+</section>
+
+<section class="featured-section">
+    <div class="container editorial-grid">
+        <div class="panel">
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow">Recent Writing</div>
+                    <h2>最近写作</h2>
+                </div>
+                <p>优先展示非 AI 资讯内容</p>
+            </div>
+
+            <div class="post-list">
+                {% assign recent_count = 0 %}
+                {% for post in site.posts %}
+                {% assign is_ai = false %}
+                {% if post.category == "llm-dynamics" or post.categories contains "llm-dynamics" %}
+                {% assign is_ai = true %}
+                {% endif %}
+                {% unless is_ai %}
+                <article class="post-row">
+                    <a href="{{ post.url | relative_url }}">
+                        <div class="meta">{{ post.date | date: "%Y-%m-%d" }}</div>
+                        <h3>{{ post.title }}</h3>
+                    </a>
+                    <p class="summary">{{ post.excerpt | strip_html | truncatewords: 26 }}</p>
+                </article>
+                {% assign recent_count = recent_count | plus: 1 %}
+                {% if recent_count == 3 %}
+                {% break %}
+                {% endif %}
+                {% endunless %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow">About</div>
+                    <h2>站点说明</h2>
+                </div>
+            </div>
+            <p class="muted-note">这个站点会继续保留 AI 资讯内容，但首页不再像资讯聚合，而是更偏向个人博客与文章索引。</p>
+            <div style="height: 16px;"></div>
+            <p class="muted-note">如果某篇 CSDN 文章本地没有源文件，我可以继续帮你从标题和链接清单里补迁移。</p>
         </div>
     </div>
 </section>
-{% else %}
+
 <section class="latest-section">
     <div class="container">
-        <p style="text-align: center; color: var(--text-muted); padding: 60px 0;">
-            暂无文章，敬请期待...
-        </p>
+        <div class="section-heading">
+            <div>
+                <div class="eyebrow">AI News</div>
+                <h2>AI 资讯分页</h2>
+            </div>
+            <p>保留原来的资讯发布流</p>
+        </div>
+
+        <div class="panel">
+            <div class="ai-toolbar">
+                <p class="muted-note">当前共 {{ site.posts.size }} 篇内容，其中 AI 资讯按分页浏览。</p>
+                <div class="pager" id="aiPager"></div>
+            </div>
+
+            <div class="article-list" id="aiNewsList">
+                {% for post in site.posts %}
+                {% if post.category == "llm-dynamics" or post.categories contains "llm-dynamics" %}
+                <article class="article-card" data-ai-card>
+                    <a href="{{ post.url | relative_url }}">
+                        <h3 class="article-title">{{ post.title }}</h3>
+                        <p class="article-meta">{{ post.date | date: "%Y.%m.%d" }} · AI资讯</p>
+                        <p class="article-excerpt">{{ post.excerpt | strip_html | truncatewords: 36 }}</p>
+                        <span class="read-more">阅读全文 →</span>
+                    </a>
+                </article>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </section>
-{% endif %}
 
 <script>
-// Tag filter functionality
-document.querySelectorAll('.tag').forEach(tag => {
-    tag.addEventListener('click', function() {
-        // Update active state
-        document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
-        
-        const filter = this.dataset.filter;
-        const articles = document.querySelectorAll('.article-card');
-        
-        articles.forEach(article => {
-            if (filter === 'all' || article.dataset.category === filter) {
-                article.style.display = 'block';
-            } else {
-                article.style.display = 'none';
+(() => {
+    const cards = Array.from(document.querySelectorAll('[data-ai-card]'));
+    const pager = document.getElementById('aiPager');
+    if (!cards.length || !pager) return;
+
+    const pageSize = 4;
+    const pageCount = Math.max(1, Math.ceil(cards.length / pageSize));
+    let currentPage = 1;
+
+    const render = () => {
+        cards.forEach((card, index) => {
+            const page = Math.floor(index / pageSize) + 1;
+            card.style.display = page === currentPage ? 'block' : 'none';
+        });
+
+        pager.innerHTML = '';
+
+        const prev = document.createElement('button');
+        prev.textContent = '上一页';
+        prev.disabled = currentPage === 1;
+        prev.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage -= 1;
+                render();
             }
         });
-    });
-});
+        pager.appendChild(prev);
 
-// Search functionality
-document.getElementById('searchInput').addEventListener('input', function(e) {
-    const query = e.target.value.toLowerCase();
-    const articles = document.querySelectorAll('.article-card');
-    
-    articles.forEach(article => {
-        const title = article.querySelector('.article-title').textContent.toLowerCase();
-        const excerpt = article.querySelector('.article-excerpt').textContent.toLowerCase();
-        
-        if (title.includes(query) || excerpt.includes(query)) {
-            article.style.display = 'block';
-        } else {
-            article.style.display = 'none';
+        for (let page = 1; page <= pageCount; page++) {
+            const btn = document.createElement('button');
+            btn.textContent = page;
+            if (page === currentPage) btn.classList.add('active');
+            btn.addEventListener('click', () => {
+                currentPage = page;
+                render();
+            });
+            pager.appendChild(btn);
         }
-    });
-});
 
-// Keyboard shortcut for search
-document.addEventListener('keydown', function(e) {
-    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        document.getElementById('searchInput').focus();
-    }
-});
+        const next = document.createElement('button');
+        next.textContent = '下一页';
+        next.disabled = currentPage === pageCount;
+        next.addEventListener('click', () => {
+            if (currentPage < pageCount) {
+                currentPage += 1;
+                render();
+            }
+        });
+        pager.appendChild(next);
+    };
+
+    render();
+})();
 </script>

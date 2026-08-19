@@ -15,6 +15,8 @@ permalink: /categories/
             {% assign categories = "llm-dynamics,tutorials,paper-reading" | split: "," %}
             {% for cat in categories %}
             {% assign posts = site.posts | where: "category", cat %}
+            {% assign array_posts = site.posts | where_exp: "post", "post.categories contains cat" %}
+            {% assign posts = posts | concat: array_posts | uniq %}
             {% if posts.size > 0 %}
             <h2>
                 {% if cat == "llm-dynamics" %}LLM动态{% endif %}
