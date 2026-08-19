@@ -5,15 +5,6 @@ date: 2025-04-25
 categories: [paper-reading]
 tags: [MCP, AI, Agent, ClickHouse, Python]
 author: g66x
-source_name: CSDN
-source_url: https://blog.csdn.net/weixin_42697921/article/details/147505261
----
-
-> **本文从CSDN迁移至此**  
-> 原文链接: [https://blog.csdn.net/weixin_42697921/article/details/147505261](https://blog.csdn.net/weixin_42697921/article/details/147505261)  
-> 迁移时间: 2025-05-19  
-> 由 [Hermes Agent](https://github.com/nousresearch/hermes-agent) 协助迁移
-
 ---
 
 # MCP

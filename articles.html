@@ -43,24 +43,11 @@ permalink: /articles/
         <div class="panel">
             <div class="section-heading">
                 <div>
-                    <div class="eyebrow">Migration</div>
-                    <h2>迁移状态</h2>
+                    <div class="eyebrow">Notes</div>
+                    <h2>写作说明</h2>
                 </div>
             </div>
-            <p class="muted-note">已确认迁移：</p>
-            <div class="post-list">
-                {% for post in site.posts %}
-                {% if post.content contains "本文从CSDN迁移至此" %}
-                <article class="post-row">
-                    <a href="{{ post.url | relative_url }}">
-                        <div class="meta">已迁移</div>
-                        <h3>{{ post.title }}</h3>
-                    </a>
-                    <p class="summary">原始内容已落到 GitHub Pages，可继续补充同系列文章。</p>
-                </article>
-                {% endif %}
-                {% endfor %}
-            </div>
+            <p class="muted-note">这里会集中整理技术文章、实践记录和后续补充的专题文档，作为独立于 AI 资讯流的长期内容页。</p>
         </div>
     </div>
 </section>

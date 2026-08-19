@@ -11,12 +11,6 @@ layout: default
             {% endif %}
             <h1 class="post-title">{{ page.title }}</h1>
             <p class="post-meta">{{ page.date | date: "%Y年%m月%d日" }} · AI探索</p>
-            {% if page.source_url %}
-            <p class="post-meta" style="margin-top: 10px;">
-                原文来源：
-                <a href="{{ page.source_url }}">{{ page.source_name | default: "外部站点" }}</a>
-            </p>
-            {% endif %}
         </header>
         
         <div class="post-content">
